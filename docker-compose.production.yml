@@ -14,19 +14,19 @@ services:
     image: asaliev/kittygram_backend
     env_file: .env
     volumes:
-      - static_volume:/backend_static
-      - media_volume:/media/
+      - static:/static
+      - media:/app/media
   frontend:
     image: asaliev/kittygram_frontend
     env_file: .env
     command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static_volume:/frontend_static
+      - static:/static
   gateway:
     image: asaliev/kittygram_gateway
     env_file: .env
     volumes:
-      - static_volume:/staticfiles/
-      - media_volume:/media/
+      - static:/static
+      - media:/app/media
     ports:
       - 9000:80
